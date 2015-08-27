@@ -20,20 +20,28 @@
 
 </head>
 <body>
-    <div class="panel">
+   
+    <div class="panel panel-danger panel-dark">
         <div class="panel-heading">
-            <span class="panel-title">جدول بيانات المحامين</span>
-        </div>
-        <div class="panel-body">
-            <div id="example">
-                <div class="menu-content">
-                    <div class="k-rtl">
-                        <div id="grid"></div>
-                    </div>
-
-                </div>
+            <span class="panel-title">سجلات بيانات المحامين</span>
+            <div class="panel-heading-controls">
+                <div class="panel-heading-icon"><i class="fa fa-inbox"></i></div>
             </div>
         </div>
+        <div class="panel-body">
+            <div class="menu-content">
+                <div class="k-rtl">
+                    <div id="grid"></div>
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- / .panel -->
+     
+            
+               
+          
+       
         <script>
                     $(document).ready(function () {
                         var crudServiceBaseUrl = "//demos.telerik.com/kendo-ui/service",
@@ -89,7 +97,7 @@
                             toolbar: ["create"],
                             columns: [
                                 {
-                                    field: "ProductName", title: "اسم المنتج)):", width: "350px", filterable: {
+                                    field: "ProductName", title: "اسم المنتج:", width: "350px", filterable: {
                                         cell: {
                                             operator: "contains"
                                         }
@@ -103,7 +111,7 @@
                         });
                     });
         </script>
-    </div>
+    
 
 
 </body>
