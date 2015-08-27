@@ -1,0 +1,110 @@
+﻿@{
+    Page.Title = "قسم ادارة المحامين";
+    Layout = "_Layout.cshtml";
+    Page.Postion = new string[] { "بارت 1", "الرئيسية", "أين انت لان" };
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="styles/kendo.rtl.min.css" />
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+
+
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title">جدول بيانات المحامين</span>
+        </div>
+        <div class="panel-body">
+            <div id="example">
+                <div class="menu-content">
+                    <div class="k-rtl">
+                        <div id="grid"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+                    $(document).ready(function () {
+                        var crudServiceBaseUrl = "//demos.telerik.com/kendo-ui/service",
+                            dataSource = new kendo.data.DataSource({
+                                transport: {
+                                    read: {
+                                        url: crudServiceBaseUrl + "/Products",
+                                        dataType: "jsonp"
+                                    },
+                                    update: {
+                                        url: crudServiceBaseUrl + "/Products/Update",
+                                        dataType: "jsonp"
+                                    },
+                                    destroy: {
+                                        url: crudServiceBaseUrl + "/Products/Destroy",
+                                        dataType: "jsonp"
+                                    },
+                                    create: {
+                                        url: crudServiceBaseUrl + "/Products/Create",
+                                        dataType: "jsonp"
+                                    },
+                                    parameterMap: function (options, operation) {
+                                        if (operation !== "read" && options.models) {
+                                            return { models: kendo.stringify(options.models) };
+                                        }
+                                    }
+                                },
+                                batch: true,
+                                pageSize: 20,
+                                schema: {
+                                    model: {
+                                        id: "ProductID",
+                                        fields: {
+                                            ProductID: { editable: false, nullable: true },
+                                            ProductName: { validation: { required: true } },
+                                            UnitPrice: { type: "number", validation: { required: true, min: 1 } },
+                                            Discontinued: { type: "boolean" },
+                                            UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                                        }
+                                    }
+                                }
+                            });
+
+                        $("#grid").kendoGrid({
+                            dataSource: dataSource,
+                            pageable: true,
+                            serverPaging: true,
+                            serverFiltering: true,
+                            filterable: {
+                                mode: "row"
+                            },
+                            height: 550,
+                            toolbar: ["create"],
+                            columns: [
+                                {
+                                    field: "ProductName", title: "اسم المنتج)):", width: "350px", filterable: {
+                                        cell: {
+                                            operator: "contains"
+                                        }
+                                    }
+                                },
+                                { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "120PX" },
+                                { field: "UnitsInStock", title: "Units In Stock", width: "120PX" },
+                                { field: "Discontinued", width: "120PX" },
+                                { command: ["edit", "destroy"], title: "&nbsp;", width: "150PX" }],
+                            editable: "popup"
+                        });
+                    });
+        </script>
+    </div>
+
+
+</body>
+</html>

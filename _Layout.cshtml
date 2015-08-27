@@ -285,24 +285,15 @@ Use search to find needed section.
 
                 </ul> <!-- / .navigation -->
                 <div class="menu-content">
-                    <a href="pages-invoice.html" class="btn btn-primary btn-block btn-outline dark">Create Invoice</a>
+                    <a href="LawyerManagment.cshtml" class="btn btn-primary btn-block btn-outline dark"> <i class="menu-icon fa fa-male"></i>  قسم ادارة المحامين</a>
+                    
+                       
                 </div>
             </div> <!-- / #main-menu-inner -->
         </div> <!-- / #main-menu -->
         <!-- /4. $MAIN_MENU -->
         <div id="content-wrapper">
-            <ul class="breadcrumb breadcrumb-page">
-                <div class="breadcrumb-label text-light-gray">انت الآن متواجد: </div>
-                @{
-                    string[] str = (string[])Page.Postion;
-                }
-                @foreach (string item in str)
-                {
-                    <li><a href="#">@item</a></li>
-                }
-
-                @*<li class="active"><a href="#">القائمة الرئيسية</a></li>*@
-            </ul>
+           
             <div class="page-header">
 
                 <div class="row">
